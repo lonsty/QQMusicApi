@@ -150,17 +150,17 @@ class DataStatistics {
 
     // 过去1分钟、10分钟、1小时
     const last1M = list.filter((v) => v > (now - 60000));
-    if (last1M.length >= 100) {
+    if (last1M.length >= 1000) {
       this.addList(ip, 'blackList');
       return false;
     }
     const last10M = list.filter((v) => v > (now - 60000 * 10));
-    if (last10M.length >= 500) {
+    if (last10M.length >= 5000) {
       this.addList(ip, 'blackList');
       return false;
     }
     const last1H = list.filter((v) => v > (now - 360000));
-    if (last1H.length >= 2000) {
+    if (last1H.length >= 20000) {
       this.addList(ip, 'blackList');
       return false;
     }
@@ -175,7 +175,7 @@ class DataStatistics {
         count: 0,
       };
       this.urlsMap[preIp].count += 1;
-      if (this.urlsMap[preIp].count >= 10) {
+      if (this.urlsMap[preIp].count >= 100) {
         this.addList(preIp, 'blackList', now + 86400000 * 2);
         delete this.urlsMap[preIp];
         return false;
