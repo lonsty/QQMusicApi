@@ -1,0 +1,17 @@
+version: "3"
+
+networks:
+  frontend:
+    external: false
+
+services:
+  qqmusic-api:
+    container_name: qqmusic-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - frontend
+    ports:
+      - 7019:80
+    command: npm start

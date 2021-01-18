@@ -109,7 +109,7 @@ router.get('/daily', async (req, res) => {
       errMsg: '未登录'
     })
   }
-  const listInfo = await request(`http://127.0.0.1:3300/songlist?id=${id}`);
+  const listInfo = await request(`http://127.0.0.1:7019/songlist?id=${id}`);
   return res.send(listInfo);
 })
 

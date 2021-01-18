@@ -21,7 +21,7 @@ $ npm install
 $ npm start
 ```
 
-项目默认端口为 3300
+项目默认端口为 7019
 
 **在线接口测试网址：[http://api.qq.jsososo.com](http://api.qq.jsososo.com)**
 

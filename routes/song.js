@@ -57,7 +57,7 @@ router.get('/batch', async (req, res) => {
     });
   };
   midArr.forEach((mid) => {
-    request(`http://127.0.0.1:3300/song?songmid=${mid}`)
+    request(`http://127.0.0.1:7019/song?songmid=${mid}`)
       .then((res) => {
         if (res.result === 100) {
           resultObj[mid] = res.data;
@@ -73,7 +73,7 @@ router.get('/batch', async (req, res) => {
 
 router.get('/find', async (req, res) => {
   const { key } = req.query;
-  const obj = await request(`http://127.0.0.1:3300/search?key=${key}&pageNo=1`);
+  const obj = await request(`http://127.0.0.1:7019/search?key=${key}&pageNo=1`);
   const song = obj.data.list[0];
   if (!song) {
     res.send({
@@ -85,7 +85,7 @@ router.get('/find', async (req, res) => {
       result: 100,
       data: song,
     };
-    const urlResult = await request(`http://127.0.0.1:3300/song/urls?id=${song.songmid}`);
+    const urlResult = await request(`http://127.0.0.1:7019/song/urls?id=${song.songmid}`);
     result.data.url = urlResult.data[song.songmid];
     res.send(result);
   }
@@ -98,7 +98,7 @@ router.post('/finds', async (req, res) => {
   let count = 0;
   for (let i = 0; i < keys.length; i++) {
     request({
-      url: `http://127.0.0.1:3300/song/find?key=${encodeURIComponent(data[keys[i]])}`,
+      url: `http://127.0.0.1:7019/song/find?key=${encodeURIComponent(data[keys[i]])}`,
     }).then((result) => {
       data[keys[i]] = result.data || {};
       count += 1;
